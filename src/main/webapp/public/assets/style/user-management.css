@@ -1,0 +1,202 @@
+@import url("app.css");
+
+body {
+    color: white;
+    padding: 10px 25px;
+}
+
+h1, h2 {
+    font-weight: 300;
+    width: fit-content;
+}
+
+fieldset {
+    margin-bottom: 20px;
+    width: fit-content;
+}
+
+input[type="date"],
+input[type="text"] {
+    border: 0;
+}
+
+table {
+    background-color: white;
+    border-collapse: collapse;
+    box-shadow: 10px 10px 20px #000;
+    color: black;
+    margin-bottom: 10px;
+}
+
+table button {
+    width: 75px;
+}
+
+table tr td.binary-field {
+    color: #666;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0;
+    transition: color 0.75s;
+}
+
+table tr td.binary-field:hover {
+    background-color: #fdd;
+    color: #b00;
+}
+
+th, .vertical-table tr td:first-of-type {
+    background-color: lightgrey;
+}
+
+th, td {
+    border: 1px solid black;
+}
+
+.authorization-container {
+    padding-right: 20px !important;
+    text-wrap: nowrap;
+    vertical-align: middle;
+}
+
+.authorization-container input {
+    font-size: 12px;
+    width: 100px;
+}
+
+.authorization-container .clock {
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 12px;
+    margin-left: 31px;
+    padding-top: 1px;
+    position: absolute;
+    transform: rotate(-45deg);
+}
+
+.authorization-container .infinity {
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 12px;
+    margin-left: 8px;
+    padding-top: 2px;
+    position: absolute;
+}
+
+.bread-crumbs {
+    font-size: 16px;
+    margin-bottom: 10px;
+    width: fit-content;
+}
+
+.bread-crumbs a {
+    color: white;
+    font-weight: bold;
+    margin-bottom: 10px;
+    width: fit-content;
+}
+
+.bread-crumbs a:hover {
+    color: #d00;
+}
+
+.bread-crumbs a:not(:last-of-type):after {
+    color: #bbb;
+    content: "\025B6";
+    font-size: smaller;
+    margin-left: 5px;
+}
+
+.emoji-silhouette {
+  color: transparent;
+  text-shadow: 0 0 0 #666;
+  transition: text-shadow 0.75s;
+}
+
+.emoji-silhouette:hover {
+  color: transparent;
+  text-shadow: 0 0 0 #b00;
+}
+
+.expired-account {
+    color: #aaa;
+}
+
+.new-user-controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+.vertical-table tr td:first-of-type {
+    padding-right: 5px;
+    text-align: right;
+}
+
+.vertical-table tr td:not(:first-of-type) {
+    font-family: Consolas, monospace;
+    text-align: center;
+}
+
+.vertical-table tr td:last-of-type input {
+    font-family: Consolas, monospace;
+}
+
+.horizontal-table a {
+    font-weight: bold;
+}
+
+.horizontal-table th,
+.vertical-table td:first-of-type {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px 10px;
+}
+
+.horizontal-table {
+    text-align: center;
+}
+
+.horizontal-table tr:hover {
+    background-color: #eee;
+}
+
+.horizontal-table tr td {
+    font-family: Consolas, monospace;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.summation {
+    cursor: help;
+}
+
+/* Avoiding calling this "#main" since user-management.css sucks in all of app.css */
+.top-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.top-container > * {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.user-id {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.user-id a {
+    color: #b00;
+    display: inline-block;
+    font-weight: bold;
+    height: 100%;
+    line-height: 24px;
+    width: 100%;
+}
+
+.user-id:hover {
+    background-color: #fdd;
+}

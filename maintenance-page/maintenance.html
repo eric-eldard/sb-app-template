@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- TODO - complete meta and title tags (version replaced programmatically during build) -->
+        <meta charset="UTF-8">
+        <meta name="author" content="TODO">
+        <meta name="description" content="TODO">
+        <meta name="keywords" content="TODO">
+        <meta name="version" content="${ARTIFACT_VERSION}">
+
+        <meta name="robots" content="noindex">
+
+        <title>TODO</title>
+
+        <style>
+            body {
+                background-attachment: fixed !important;
+                background: linear-gradient(to right bottom, rgba(128,128,128,1) 0%, rgba(255,255,255,1) 100%) #ddd;
+                font-family: Helvetica, Arial, sans-serif;
+                margin: 0;
+            }
+
+            #h1 {
+                font-size: 48px;
+                transition: font-size 1s;
+            }
+
+            #h2 {
+                font-size: 28px;
+                margin-bottom: 25px;
+                transition: font-size 1s;
+            }
+
+            #main {
+                background-color: #000;
+                box-sizing: border-box;
+                color: #fff;
+                font-size: 20px;
+                left: 0;
+                margin-top: 40%;
+                padding: 10px;
+                position: absolute;
+                width: 100%;
+                top: 0;
+                transition: padding 1s, top 1s, transform 1s;
+            }
+
+            #main > * {
+                box-sizing: border-box;
+                margin-left: auto;
+                margin-right: auto;
+                position: relative;
+                transition: width 1s;
+                width: 100%;
+            }
+
+            @media screen and (min-width: 650px) {
+                #h1 {
+                    font-size: 80px;
+                }
+
+                #h2 {
+                    font-size: 46px;
+                }
+
+                #main {
+                    margin-top: 0;
+                    padding: 30px;
+                    top: 35%;
+                    transform: translateY(-35%);
+                }
+            }
+
+            @media screen and (min-width: 950px) {
+                #main > * {
+                    box-sizing: unset;
+                    width: 900px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="main">
+            <div>
+                <div id="h1"></div>
+                <div id="h2">is undergoing maintenance</div>
+                <p>
+                    <i>This usually means we're releasing cool stuff!</i>
+                </p>
+                <p>
+                    Give us 60 seconds&mdash;we'll refresh the page as soon as we're back online
+                </p>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById("h1").innerHTML = window.location.hostname;
+
+            const recheckTimeout = 10;
+
+            async function refreshOnReady() {
+                const response = await fetch(window.location.origin);
+
+                if (response.status < 500) {
+                    console.log("Looks like we're back up; refreshing!");
+
+                    if (window.location.pathname.endsWith("/maintenance.html")) {
+                        // if on maintenance page, go to home page instead of refreshing
+                        window.location.href = window.location.origin;
+                    }
+                    else {
+                        window.location.reload();
+                    }
+                }
+                else {
+                    console.log(`Looks like we're still down; scheduling next check in ${recheckTimeout} seconds`);
+                    window.setTimeout(() => refreshOnReady(), recheckTimeout * 1000);
+                }
+            }
+
+            refreshOnReady();
+        </script>
+    </body>
+</html>

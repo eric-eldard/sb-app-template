@@ -1,0 +1,62 @@
+.code-snippet:after,
+.embedded-video:after,
+.iframe div:after,
+.screenshot a:after {
+    background-color: #666;
+    border-bottom-left-radius: 12px;
+    border-top-left-radius: 12px;
+	bottom: 5px;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    opacity: 0.8;
+    padding: 4px 6px 4px 8px;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    transition: background-color 0.3s, opacity 0.3s;
+}
+
+.code-snippet:after {
+    content: "Sample code";
+}
+
+.embedded-doc .iframe div:after {
+	content: "PDF Viewer";
+}
+
+.embedded-doc .screenshot a:after {
+    content: "Open PDF";
+}
+
+.embedded-iframe .screenshot a:after,
+.new-tab.screenshot a:after {
+    content: "Open in new tab";
+}
+
+.embedded-video:after {
+    content: "Video";
+}
+
+.iframe div:after {
+	content: "iframe";
+}
+
+.screenshot a:after {
+	content: "Screenshot";
+}
+
+.embedded-doc .iframe:after {
+    display: none; /* don't show "iframe" label over pdf doc viewer */
+}
+
+.embedded-video:hover:after,
+.screenshot a:hover:after {
+    background-color: #999;
+    opacity: .9;
+}
+
+.embedded-video.playing:after {
+    opacity: 0 !important; /* must override normal and hover behaviors */
+}

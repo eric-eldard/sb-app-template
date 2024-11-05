@@ -1,0 +1,107 @@
+/* A div for displaying all pop-up content */
+#popup {
+	background-color: #ddd;
+	border: 3px solid #fff;
+	border-radius: 15px;
+	cursor: default;
+	color: #000;
+	height: 88%;
+	margin: auto;
+	max-width: 1100px;
+	opacity: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+	overscroll-behavior: contain;
+    padding: 10px 15px 24px;
+    position: relative;
+	top: 50%;
+	transform: rotate(0deg) translateY(-50%);
+	transform-origin: bottom center;
+	transition: left 0.5s, opacity 0.3s, padding 1s, transform 0.5s, width 0.3s;
+	width: 0;
+}
+
+#popup.open {
+    opacity: 1;
+    width: 85%;
+}
+
+
+/* Popup Controls */
+
+#popup #closeX {
+    color: #fff;
+    display: block;
+    font-size: 20px;
+	line-height: 24px;
+	opacity: 0.5;
+	position: absolute;
+	right: 0;
+    transition: opacity 0.5s;
+}
+
+#popup #closeX:after {
+    content: "\02715";
+}
+
+#popup #closeX:hover,
+#popup #closeX.on {
+	opacity: 1;
+}
+
+#popup #top-controls {
+    height: 24px;
+	position: sticky;
+    text-shadow:  0px  2px  2px #000,
+                  0px -2px  2px #000,
+                  2px  0px  2px #000,
+                 -2px  0px  2px #000,
+                  2px  2px  2px #000,
+                  2px -2px  2px #000,
+                 -2px  2px  2px #000,
+                 -2px -2px  2px #000;
+	top: 0;
+    z-index: 999999;
+}
+
+#popup.hide-controls #top-controls {
+    display: none;
+}
+
+/* A full-page div for preventing interaction with the main page while content is being displayed in #popup */
+#popup-container {
+	cursor: pointer;
+	display: none;
+	height: 100%;
+	left: 0;
+	overflow: auto;
+	overscroll-behavior: none;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
+}
+
+#popup-container.open {
+    display: block;
+}
+
+
+@media screen and (min-width: 600px) {
+    #popup {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    #popup.open {
+        width: 80%;
+    }
+
+    #popup h2,
+    #popup h3,
+    #popup h4,
+    #popup h5,
+    #popup h6 {
+        text-align: left;
+    }
+}

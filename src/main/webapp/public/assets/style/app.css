@@ -1,0 +1,115 @@
+@import url("popup.css");
+@import url("tagging.css");
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background-attachment: fixed !important;
+    background: linear-gradient(to right bottom, rgba(128,128,128,1) 0%, rgba(255,255,255,1) 100%) #ddd;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+button,
+input[type=button],
+input[type=checkbox],
+label {
+    cursor: pointer;
+}
+
+#main {
+    left: 0;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    z-index: 1;
+}
+
+#main > * {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: fit-content;
+}
+
+
+.blur {
+    filter: blur(3px);
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.center-children > * {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.larger-text {
+    font-size: larger;
+}
+
+.mobile-hidden {
+    display: none;
+}
+
+.mono {
+    font-family: Consolas, monospace;
+    font-size: smaller;
+}
+
+.password {
+    position: relative;
+}
+
+.password input {
+    box-sizing: border-box;
+    height: 24px; /* Use explicit height because browsers vary on input default height */
+    padding-right: 27px;
+    width: 100%;
+}
+
+.password .visibility-toggle {
+    display: block;
+    height: 0;
+    line-height: 0;
+    position: absolute;
+    right: 0;
+    top: 44px;
+}
+
+.password .visibility-toggle img {
+    position: relative;
+    right: 4px;
+    top: -19px;
+    width: 22px;
+}
+
+.chrome-mobile-shim .password .visibility-toggle img {
+    top: -20px;
+}
+
+.password .visibility-toggle .password-hide {
+    display: none;
+}
+
+
+@media screen and (min-width: 600px) {
+    .mobile-hidden {
+        display: unset;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .password .visibility-toggle {
+        /* Desktop text inputs are slightly shorter than on mobile, so here we bump the visibility icons up a little */
+        top: 42px;
+    }
+}
