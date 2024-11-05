@@ -65,7 +65,7 @@ public class AppUser implements UserDetails
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = AppAuthority.class)
     @Column(name = "authority")
-    @JoinTable(name = "grant_authority", joinColumns = @JoinColumn(name = "user_id"))
+    @JoinTable(name = "app_authority", joinColumns = @JoinColumn(name = "user_id"))
     private Set<AppAuthority> appAuthorities;
 
     public AppUser()

@@ -72,7 +72,7 @@
             <h1>User Management</h1>
             <div class="bread-crumbs center">
                 <a href="/">Home</a>
-                <a href="/your_app/">Your App</a> <%-- TODO - set your app's root path and name --%>
+                <a href="/your_app/">Your App</a> <!-- TODO - set your app's root path and name -->
             </div>
 
             <fieldset>
@@ -123,7 +123,7 @@
                 <c:forEach items="${userList}" var="user">
                 <c:set var="user" value="${user}" scope="request"/>
                 <tr>
-                    <%-- TODO - set your app's root path --%>
+                    <!-- TODO - set your app's root path -->
                     <td class="user-id"><a href="/your_app/users/${user.id}" title="View user">${user.id}</a></td>
                     <td>${user.username}</td>
                     <td>
@@ -147,7 +147,7 @@
                         <c:when test="${user.appAuthorities.size() > 0}">
                             <td class="summation"
                                 title="&#013;<c:forEach items='${user.appAuthorities}' var='authority'>${authority.pretty()}&#013;</c:forEach>">
-                                <a href="/your_app/users/${user.id}"> <%-- TODO - set your app's root path --%>
+                                <a href="/your_app/users/${user.id}"> <!-- TODO - set your app's root path -->
                                     ${user.appAuthorities.size()}
                                 </a>
                             </td>

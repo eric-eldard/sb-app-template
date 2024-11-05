@@ -32,7 +32,7 @@ CREATE TABLE login_attempt(
 );
 
 -- TODO - set your AppAuthority values as ENUM values
-CREATE TABLE grant_authority(
+CREATE TABLE app_authority(
     user_id    BIGINT                NOT NULL,
     authority  ENUM('AN_AUTHORITY')  NOT NULL,
     PRIMARY KEY (user_id, authority),

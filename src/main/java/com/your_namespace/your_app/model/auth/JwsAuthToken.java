@@ -26,7 +26,7 @@ public class JwsAuthToken extends AbstractAuthenticationToken
     private final Jws<Claims> jwsClaims;
 
     public JwsAuthToken(Jws<Claims> jwsClaims) {
-        super(makeGrantAuthorities(jwsClaims));
+        super(makeAppAuthorities(jwsClaims));
         this.jwsClaims = jwsClaims;
         setAuthenticated(true);
     }
@@ -93,7 +93,7 @@ public class JwsAuthToken extends AbstractAuthenticationToken
         return authorizedUntil != null && authorizedUntil.before(new Date());
     }
 
-    private static Collection<GrantedAuthority> makeGrantAuthorities(Jws<Claims> jwsClaims)
+    private static Collection<GrantedAuthority> makeAppAuthorities(Jws<Claims> jwsClaims)
     {
         return jwsClaims.getPayload().entrySet().stream()
             .filter(entry -> entry.getKey().startsWith(ClaimConstants.GA_STUB))

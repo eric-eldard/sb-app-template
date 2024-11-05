@@ -25,6 +25,7 @@ import com.your_namespace.your_app.security.annotation.ClearsCsrfToken;
 import com.your_namespace.your_app.security.annotation.RequiresClaimsRefresh;
 import com.your_namespace.your_app.service.auth.SecurityContextService;
 import com.your_namespace.your_app.util.Constants;
+import com.your_namespace.your_app.util.PasswordUtils;
 
 @Service
 @AllArgsConstructor
@@ -72,7 +73,7 @@ public class UserServiceImpl implements UserService
             throw new IllegalArgumentException(
                 AppUserDto.class.getSimpleName() + " with blank username somehow got through validation");
         }
-        validatePassword(dto.getPassword());
+        PasswordUtils.validate(dto.getPassword());
 
         if (userRepo.existsByUsername(username))
         {
@@ -127,7 +128,7 @@ public class UserServiceImpl implements UserService
     @RequiresClaimsRefresh
     public void setPassword(long id, String password)
     {
-        validatePassword(password);
+        PasswordUtils.validate(password);
 
         AppUser user = findById(id)
             .orElseThrow(() ->
@@ -302,15 +303,6 @@ public class UserServiceImpl implements UserService
 
         user.getLoginAttempts().add(LoginAttempt.makeFailedAttempt(user, failureReason));
         userRepo.save(user);
-    }
-
-    private void validatePassword(String password)
-    {
-        if (password == null || password.trim().length() < Constants.MIN_PASSWORD_CHARS)
-        {
-            throw new IllegalArgumentException(
-                "Password must be at least " + Constants.MIN_PASSWORD_CHARS + " characters");
-        }
     }
 
     private String getRequesterUsername()

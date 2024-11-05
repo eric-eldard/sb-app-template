@@ -40,8 +40,8 @@
             <h1>View User: <b>${user.username}</b></h1>
             <div class="bread-crumbs">
                 <a href="/">Home</a>
-                <a href="/your_app/">Your App</a> <%-- TODO - set your app's root path and name --%>
-                <a href="/your_app/users">Users</a> <%-- TODO - set your app's root path --%>
+                <a href="/your_app/">Your App</a> <!-- TODO - set your app's root path and name -->
+                <a href="/your_app/users">Users</a> <!-- TODO - set your app's root path -->
             </div>
 
             <table class="vertical-table">
@@ -90,7 +90,7 @@
                     <td colspan="2">
                         <div class="button-cell">
                             <button onclick="UserManagement.setPassword(${user.id}, '${user.username}')">Set Password</button>
-                            <button onclick="UserManagement.deleteUser(${user.id}, '${user.username}', (() => window.location = '/your_app/users'));">Delete</button> <%-- TODO - set your app's root path --%>
+                            <button onclick="UserManagement.deleteUser(${user.id}, '${user.username}', (() => window.location = '/your_app/users'));">Delete</button> <!-- TODO - set your app's root path -->
                         </div>
                     </td>
                 </tr>

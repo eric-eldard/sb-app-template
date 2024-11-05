@@ -11,6 +11,7 @@
         </encoder>
     </appender>
 
+    <!-- TODO - set your app's root package -->
     <logger name="com.your_namespace" level="INFO" additivity="false">
         <appender-ref ref="FILE"/>
     </logger>
