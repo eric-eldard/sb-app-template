@@ -8,6 +8,8 @@ public final class Constants
 
     public static final String JWT_COOKIE_NAME = "authToken";
 
+    public static final int MAX_PASSWORD_CHARS = 50;
+
     public static final int MIN_PASSWORD_CHARS = 10;
 
     private Constants()

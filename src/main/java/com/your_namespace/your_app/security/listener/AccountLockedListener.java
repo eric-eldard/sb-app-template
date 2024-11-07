@@ -19,6 +19,6 @@ public class AccountLockedListener implements ApplicationListener<Authentication
     public void onApplicationEvent(AuthenticationFailureLockedEvent event)
     {
         String username = event.getAuthentication().getName();
-        userService.recordFailedLogin(username, LoginFailureReason.ACCOUNT_LOCKED);;
+        userService.recordFailedLogin(username, LoginFailureReason.ACCOUNT_LOCKED);
     }
 }

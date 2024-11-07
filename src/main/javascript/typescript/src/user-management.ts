@@ -58,7 +58,7 @@ export namespace UserManagement {
                 "password": password,
             }
             fetch(`${USER_ADMIN_PATH}/${id}/password`, makeRequestOptions("PATCH", user))
-                .then(response => handleResponse(response, (response => {
+                .then(response => handleResponse(response, (() => {
                     alert("Password updated for user " + username);
                     window.location.reload(); // reload to refresh "failed attempts" count
                 })));
@@ -75,7 +75,7 @@ export namespace UserManagement {
             confirmed = confirm("Confirm infinite authorization for " + username);
         }
 
-        if (confirmed == true) {
+        if (confirmed) {
             const user: User = {
                 "authorizedUntil": date,
             }
@@ -117,7 +117,7 @@ export namespace UserManagement {
      * @param successCallback action to run on success; omit for default behavior (reload page)
      */
     function handleResponse(response: Response,
-        successCallback: ((r: Response) => void) = (response => window.location.reload())): void {
+        successCallback: ((r: Response) => void) = (() => window.location.reload())): void {
         if (response.ok) {
             successCallback(response);
         }

@@ -1,5 +1,6 @@
 package com.your_namespace.your_app;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,7 +11,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import com.your_namespace.your_app.model.user.AppUserDto;
 import com.your_namespace.your_app.service.user.UserService;
-import com.your_namespace.your_app.util.PasswordUtils;
+import com.your_namespace.your_app.validation.validator.PasswordValidator;
 
 /**
  * Application entry point
@@ -29,19 +30,22 @@ public class YourApp
 
         // TODO - after renaming your packages, do a text search on "your_app." to discover all properties to rename
         boolean createAdmin = Boolean.parseBoolean(context.getEnvironment().getProperty("your_app.create-admin"));
-        String adminPassword = context.getEnvironment().getProperty("your_app.admin-password");
 
 
         if (createAdmin)
         {
-            try
+            String adminEmail = context.getEnvironment().getProperty("your_app.admin-username");
+            if (StringUtils.isBlank(adminEmail))
             {
-                PasswordUtils.validate(adminPassword);
+                throw new IllegalArgumentException(
+                    "Invalid value set for your_app.admin-email: [" + adminEmail + "]");
             }
-            catch (IllegalArgumentException ex)
+
+            String adminPassword = context.getEnvironment().getProperty("your_app.admin-password");
+            if (!PasswordValidator.isValid(adminPassword))
             {
-                LOGGER.error("invalid value set for your_app.prototype.admin-password: [{}]", adminPassword);
-                throw ex;
+                throw new IllegalArgumentException(
+                    "Invalid value set for your_app.admin-password: [" + adminPassword + "]");
             }
 
             try

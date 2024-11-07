@@ -25,7 +25,7 @@ import com.your_namespace.your_app.security.annotation.ClearsCsrfToken;
 import com.your_namespace.your_app.security.annotation.RequiresClaimsRefresh;
 import com.your_namespace.your_app.service.auth.SecurityContextService;
 import com.your_namespace.your_app.util.Constants;
-import com.your_namespace.your_app.util.PasswordUtils;
+import com.your_namespace.your_app.validation.validator.PasswordValidator;
 
 @Service
 @AllArgsConstructor
@@ -73,7 +73,12 @@ public class UserServiceImpl implements UserService
             throw new IllegalArgumentException(
                 AppUserDto.class.getSimpleName() + " with blank username somehow got through validation");
         }
-        PasswordUtils.validate(dto.getPassword());
+
+        if (!PasswordValidator.isValid(dto.getPassword()))
+        {
+            throw new IllegalArgumentException(AppUserDto.class.getSimpleName() +
+                " with invalid password somehow got through validation: [" + dto.getPassword() + "]");
+        }
 
         if (userRepo.existsByUsername(username))
         {
@@ -128,7 +133,10 @@ public class UserServiceImpl implements UserService
     @RequiresClaimsRefresh
     public void setPassword(long id, String password)
     {
-        PasswordUtils.validate(password);
+        if (!PasswordValidator.isValid(password))
+        {
+            throw new IllegalArgumentException("Invalid password somehow got through validation: [" + password + "]");
+        }
 
         AppUser user = findById(id)
             .orElseThrow(() ->
