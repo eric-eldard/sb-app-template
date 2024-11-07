@@ -166,7 +166,7 @@ export namespace App {
     }
 
     function popupIsOpen(): boolean {
-        return getPopup().classList.contains("open");
+        return getPopup() && getPopup().classList.contains("open");
     }
     
     function setPopupIsOpen(isOpen: boolean): void {

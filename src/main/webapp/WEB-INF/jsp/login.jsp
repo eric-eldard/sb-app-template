@@ -152,11 +152,11 @@
                     <div class="intro-heading">Login</div>
                     <form>
                         <div class="username">
-                            <div class="label">Username</div>
+                            <label for="login-username">Username</label>
                             <input id="login-username" autocomplete="username" onkeydown="submitOnEnter(event)">
                         </div>
                         <div class="password">
-                            <div class="label">Password</div>
+                            <label for="login-password">Password</label>
                             <jsp:include page="widgets/password-input.jsp">
                                 <jsp:param name="id" value="login-password"/>
                                 <jsp:param name="onKeyDownAction" value="submitOnEnter(event)"/>

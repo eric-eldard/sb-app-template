@@ -95,12 +95,12 @@
                 <div class="new-user-controls">
                     <div>
                         <input type="checkbox" id="newUserEnabled" checked/>
-                        <label for="newUserEnabled">Enabled</label>
+                        <label for="newUserEnabled" class="for-clickable">Enabled</label>
                     </div>
 
                     <div>
                         <input type="checkbox" id="newUserAdmin"/>
-                        <label for="newUserAdmin">Admin</label>
+                        <label for="newUserAdmin" class="for-clickable">Admin</label>
                     </div>
 
                     <button onclick="createUser()">Create</button>

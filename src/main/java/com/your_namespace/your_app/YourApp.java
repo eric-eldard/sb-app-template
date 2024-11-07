@@ -55,6 +55,7 @@ public class YourApp
                     .username("admin")
                     .password(adminPassword)
                     .enabled(true)
+                    .admin(true)
                     .build()
                 );
             }

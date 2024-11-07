@@ -14,7 +14,7 @@ body {
 button,
 input[type=button],
 input[type=checkbox],
-label {
+label.for-clickable {
     cursor: pointer;
 }
 
