@@ -291,7 +291,6 @@
                                 <resource>
                                     <directory>scripts</directory>
                                     <includes>
-                                        <include>assets-deploy.sh</include>
                                         <include>deploy.sh</include>
                                         <include>run.sh</include>
                                     </includes>
