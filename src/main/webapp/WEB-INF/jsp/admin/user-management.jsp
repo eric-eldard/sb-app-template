@@ -68,9 +68,9 @@
         </script>
     </head>
     <body>
-        <div class="top-container">
+        <div class="top-container" role="main">
             <h1>User Management</h1>
-            <nav class="bread-crumbs center">
+            <nav class="bread-crumbs">
                 <a href="/">Home</a>
                 <a href="/your_app/">Your App</a> <!-- TODO - set your app's root path and name -->
             </nav>

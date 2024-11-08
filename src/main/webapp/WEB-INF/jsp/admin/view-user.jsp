@@ -36,7 +36,7 @@
         </style>
     </head>
     <body>
-        <div class="top-container">
+        <div class="top-container" role="main">
             <h1>View User: <b>${user.username}</b></h1>
             <nav class="bread-crumbs">
                 <a href="/">Home</a>

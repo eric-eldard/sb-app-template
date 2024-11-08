@@ -40,18 +40,6 @@ main > * {
     filter: blur(3px);
 }
 
-.center {
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
-}
-
-.center-children > * {
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
-}
-
 .larger-text {
     font-size: larger;
 }
