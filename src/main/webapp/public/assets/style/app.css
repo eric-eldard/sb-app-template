@@ -18,7 +18,7 @@ label.for-clickable {
     cursor: pointer;
 }
 
-#main {
+main {
     left: 0;
     padding: 10px;
     position: absolute;
@@ -28,7 +28,7 @@ label.for-clickable {
     z-index: 1;
 }
 
-#main > * {
+main > * {
     margin-left: auto;
     margin-right: auto;
     position: relative;

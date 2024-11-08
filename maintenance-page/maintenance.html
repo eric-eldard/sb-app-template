@@ -20,18 +20,7 @@
                 margin: 0;
             }
 
-            #h1 {
-                font-size: 48px;
-                transition: font-size 1s;
-            }
-
-            #h2 {
-                font-size: 28px;
-                margin-bottom: 25px;
-                transition: font-size 1s;
-            }
-
-            #main {
+            main {
                 background-color: #000;
                 box-sizing: border-box;
                 color: #fff;
@@ -45,7 +34,7 @@
                 transition: padding 1s, top 1s, transform 1s;
             }
 
-            #main > * {
+            main > * {
                 box-sizing: border-box;
                 margin-left: auto;
                 margin-right: auto;
@@ -54,7 +43,25 @@
                 width: 100%;
             }
 
+            #h1 {
+                font-size: 48px;
+                transition: font-size 1s;
+            }
+
+            #h2 {
+                font-size: 28px;
+                margin-bottom: 25px;
+                transition: font-size 1s;
+            }
+
             @media screen and (min-width: 650px) {
+                main {
+                    margin-top: 0;
+                    padding: 30px;
+                    top: 35%;
+                    transform: translateY(-35%);
+                }
+
                 #h1 {
                     font-size: 80px;
                 }
@@ -62,17 +69,10 @@
                 #h2 {
                     font-size: 46px;
                 }
-
-                #main {
-                    margin-top: 0;
-                    padding: 30px;
-                    top: 35%;
-                    transform: translateY(-35%);
-                }
             }
 
             @media screen and (min-width: 950px) {
-                #main > * {
+                main > * {
                     box-sizing: unset;
                     width: 900px;
                 }
@@ -81,7 +81,7 @@
     </head>
 
     <body>
-        <div id="main">
+        <main>
             <div>
                 <div id="h1"></div>
                 <div id="h2">is undergoing maintenance</div>
@@ -92,7 +92,7 @@
                     Give us 60 seconds&mdash;we'll refresh the page as soon as we're back online
                 </p>
             </div>
-        </div>
+        </main>
 
         <script>
             document.getElementById("h1").innerHTML = window.location.hostname;

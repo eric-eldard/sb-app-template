@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <div id="main">
+        <main>
             <div>
                 <a href="javascript: App.openPopup('hello-world')">Open popup that says "Hello world!"</a>
             </div>
@@ -23,7 +23,7 @@
                 <a href="/">Home</a>
                 <a href="/logout">Log Out</a>
             </div>
-        </div>
+        </main>
 
         <script defer>
             App.openPopupIfPopupState();

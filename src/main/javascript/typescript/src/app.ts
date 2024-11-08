@@ -86,7 +86,7 @@ export namespace App {
 
     // Show the content popup in a freshly opened or transitioned popup
     function showContentInPopup(path: string, content: string): void {
-        const main         : HTMLElement        = document.getElementById("main")!;
+        const main         : HTMLElement        = document.getElementsByTagName("main")[0]!;
         const container    : HTMLElement        = document.getElementById("popup-container")!;
         const popupContent : HTMLElement        = document.getElementById("popup-content")!;
         const hashPath     : string             = `#${path}`;
@@ -120,7 +120,7 @@ export namespace App {
 
     // Fully close the popup and return to the main page
     export function closePopup(): void {
-        const main                  : HTMLElement = document.getElementById("main")!;
+        const main                  : HTMLElement = document.getElementsByTagName("main")[0]!;
         const container             : HTMLElement = document.getElementById("popup-container")!;
         const popupContent          : HTMLElement = document.getElementById("popup-content")!;
         const locationWasHashParam  : boolean     = locationIsHashPath();

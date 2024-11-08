@@ -38,11 +38,11 @@
     <body>
         <div class="top-container">
             <h1>View User: <b>${user.username}</b></h1>
-            <div class="bread-crumbs">
+            <nav class="bread-crumbs">
                 <a href="/">Home</a>
                 <a href="/your_app/">Your App</a> <!-- TODO - set your app's root path and name -->
                 <a href="/your_app/users">Users</a> <!-- TODO - set your app's root path -->
-            </div>
+            </nav>
 
             <table class="vertical-table">
                 <tr>

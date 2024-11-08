@@ -146,7 +146,7 @@
             window.addEventListener("DOMContentLoaded", focusElement("login-username"));
         </script>
 
-        <div id="main">
+        <main>
             <div class="content">
                 <div class="login-form">
                     <div class="intro-heading">Login</div>
@@ -174,6 +174,6 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </main>
     </body>
 </html>
