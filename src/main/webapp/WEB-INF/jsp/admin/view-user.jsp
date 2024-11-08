@@ -61,36 +61,55 @@
                     <td>
                         ${user.lockedOn}
                         <c:if test="${user.lockedOn != null}">
-                            <a href="javascript: UserManagement.unlockUser(${user.id}, '${user.username}')" class="emoji-silhouette" title="Unlock">&#128275;</a>
+                            <a href="javascript: UserManagement.unlockUser(${user.id}, '${user.username}')"
+                               role="button"
+                               class="emoji-silhouette"
+                               title="Unlock"
+                               aria-label="Unlock user"
+                            >&#128275;</a>
                         </c:if>
                     </td>
                 </tr>
                 </c:if>
                 <tr>
                     <td>Disabled</td>
-                    <td class="binary-field" onclick="UserManagement.setEnabled(${user.id}, ${!user.enabled})" title="${user.enabled ? 'Disable' : 'Enable'}">
-                        ${!user.enabled ? "&cross;" : ""}
-                    </td>
+                    <td onclick="UserManagement.setEnabled(${user.id}, ${!user.enabled})"
+                        role="button"
+                        class="binary-field"
+                        title="${user.enabled ? 'Disable' : 'Enable'}"
+                        aria-label="${user.enabled ? 'Disable' : 'Enable'} user"
+                    >${!user.enabled ? "&cross;" : ""}</td>
                 </tr>
                 <tr>
                     <td>Is Admin</td>
-                    <td class="binary-field" onclick="UserManagement.setIsAdmin(${user.id}, ${!user.admin})" title="${user.admin ? 'Demote' : 'Promote'}">
-                        ${user.admin ? "&check;" : ""}
-                    </td>
+                    <td onclick="UserManagement.setIsAdmin(${user.id}, ${!user.admin})"
+                        role="button"
+                        class="binary-field"
+                        title="${user.admin ? 'Demote' : 'Promote'}"
+                        aria-label="${user.admin ? 'Demote' : 'Promote'} user"
+                    >${user.admin ? "&check;" : ""}</td>
                 </tr>
                 <c:forEach items="<%=com.your_namespace.your_app.model.user.enumeration.AppAuthority.values()%>" var="authority">
                 <tr>
                     <td>${authority.pretty()}</td>
-                    <td class="binary-field" onclick="UserManagement.toggleAuth(${user.id}, '${authority}')" title="${user.hasAuthority(authority) ? 'Remove' : 'Grant'}">
-                        ${user.hasAuthority(authority) ? "&check;" : ""}
-                    </td>
+                    <td onclick="UserManagement.toggleAuth(${user.id}, '${authority}')"
+                        role="button"
+                        class="binary-field"
+                        title="${user.hasAuthority(authority) ? 'Remove' : 'Grant'}"
+                        aria-label="${user.hasAuthority(authority) ? 'Remove' : 'Grant'} authority ${authority.pretty()}"
+                    >${user.hasAuthority(authority) ? "&check;" : ""}</td>
                 </tr>
                 </c:forEach>
                 <tr>
                     <td colspan="2">
                         <div class="button-cell">
-                            <button onclick="UserManagement.setPassword(${user.id}, '${user.username}')">Set Password</button>
-                            <button onclick="UserManagement.deleteUser(${user.id}, '${user.username}', (() => window.location = '/your_app/users'));">Delete</button> <!-- TODO - set your app's root path -->
+                            <button onclick="UserManagement.setPassword(${user.id}, '${user.username}')"
+                                    aria-label="Set password for user"
+                            >Set Password</button>
+                            <!-- TODO - set your app's root path -->
+                            <button onclick="UserManagement.deleteUser(${user.id}, '${user.username}', (() => window.location = '/your_app/users'))"
+                                    aria-label="Delete user"
+                            >Delete</button>
                         </div>
                     </td>
                 </tr>

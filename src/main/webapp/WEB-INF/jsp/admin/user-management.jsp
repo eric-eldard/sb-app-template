@@ -80,15 +80,19 @@
                 <table class="vertical-table">
                     <tr>
                         <td>Username</td>
-                        <td><input type="text" id="newUserName" autocomplete="off"/></td>
+                        <td>
+                            <input type="text" id="newUserName" autocomplete="off" aria-label="Enter new username"/>
+                        </td>
                     </tr>
                     <tr>
                         <td>Password</td>
-                        <td><input type="text" id="newUserPassword" autocomplete="off"/></td>
+                        <td>
+                            <input type="text" id="newUserPassword" autocomplete="off" aria-label="Enter user's initial password"/>
+                        </td>
                     </tr>
                     <tr>
                         <td>Authorized Until</td>
-                        <td><input type="date" id="newUserAuthUntil"/></td>
+                        <td><input type="date" id="newUserAuthUntil" aria-label="Select user's end of authorization date (or leave blank)"/></td>
                     </tr>
                 </table>
 
@@ -123,8 +127,13 @@
                 <c:forEach items="${userList}" var="user">
                 <c:set var="user" value="${user}" scope="request"/>
                 <tr>
-                    <!-- TODO - set your app's root path -->
-                    <td class="user-id"><a href="/your_app/users/${user.id}" title="View user">${user.id}</a></td>
+                    <td class="user-id">
+                        <!-- TODO - set your app's root path -->
+                        <a href="/your_app/users/${user.id}"
+                           title="View user"
+                           aria-label="View user ${user.id}"
+                        >${user.id}</a>
+                    </td>
                     <td>${user.username}</td>
                     <td>
                         <c:import url="../widgets/authorized-until-input.jsp"/>
@@ -134,22 +143,35 @@
                     <td>
                         ${user.lockedOn}
                         <c:if test="${user.lockedOn != null}">
-                            <a href="javascript: UserManagement.unlockUser(${user.id}, '${user.username}')" class="emoji-silhouette" title="Unlock">&#128275;</a>
+                            <a href="javascript: UserManagement.unlockUser(${user.id}, '${user.username}')"
+                               role="button"
+                               class="emoji-silhouette"
+                               title="Unlock"
+                               aria-label="Unlock user ${user.id}"
+                            >&#128275;</a>
                         </c:if>
                     </td>
-                    <td class="binary-field" onclick="UserManagement.setEnabled(${user.id}, ${!user.enabled})" title="${user.enabled ? 'Disable' : 'Enable'}">
-                        ${!user.enabled ? "&cross;" : ""}
-                    </td>
-                    <td class="binary-field" onclick="UserManagement.setIsAdmin(${user.id}, ${!user.admin})" title="${user.admin ? 'Demote' : 'Promote'}">
-                        ${user.admin ? "&check;" : ""}
-                    </td>
+                    <td onclick="UserManagement.setEnabled(${user.id}, ${!user.enabled})"
+                        role="button"
+                        class="binary-field"
+                        title="${user.enabled ? 'Disable' : 'Enable'}"
+                        aria-label="${user.enabled ? 'Disable' : 'Enable'} user ${user.id}"
+                    >${!user.enabled ? "&cross;" : ""}</td>
+                    <td onclick="UserManagement.setIsAdmin(${user.id}, ${!user.admin})"
+                        role="button"
+                        class="binary-field"
+                        title="${user.admin ? 'Demote' : 'Promote'}"
+                        aria-label="${user.admin ? 'Demote' : 'Promote'} user ${user.id}"
+                    >${user.admin ? "&check;" : ""}</td>
                     <c:choose>
                         <c:when test="${user.appAuthorities.size() > 0}">
                             <td class="summation"
                                 title="&#013;<c:forEach items='${user.appAuthorities}' var='authority'>${authority.pretty()}&#013;</c:forEach>">
-                                <a href="/your_app/users/${user.id}"> <!-- TODO - set your app's root path -->
-                                    ${user.appAuthorities.size()}
-                                </a>
+                                <!-- TODO - set your app's root path -->
+                                <a href="/your_app/users/${user.id}"
+                                    title="View authorities"
+                                    aria-label="View authorities for user ${user.id}"
+                                >${user.appAuthorities.size()}</a>
                             </td>
                         </c:when>
                         <c:otherwise>
@@ -157,8 +179,12 @@
                         </c:otherwise>
                     </c:choose>
                     <td>
-                        <button onclick="UserManagement.setPassword(${user.id}, '${user.username}')">Password</button>
-                        <button onclick="UserManagement.deleteUser(${user.id}, '${user.username}')">Delete</button>
+                        <button onclick="UserManagement.setPassword(${user.id}, '${user.username}')"
+                                aria-label="Set password for user ${user.id}"
+                        >Password</button>
+                        <button onclick="UserManagement.deleteUser(${user.id}, '${user.username}')"
+                                aria-label="Delete user ${user.id}"
+                        >Delete</button>
                     </td>
                 </tr>
                 </c:forEach>
