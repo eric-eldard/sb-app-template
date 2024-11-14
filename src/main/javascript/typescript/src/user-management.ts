@@ -8,14 +8,14 @@ import { User } from "./types/user";
 
 export namespace UserManagement {
     const USER_ADMIN_PATH: string = "/your_app/users"; // TODO - set your app's root path
-    const MIN_PASSWORD_CHARS: number = 8;
+    const MIN_PASSWORD_CHARS: number = 10;
 
     export function postNewUser(newUser: User): void {
         if (!newUser.username || newUser.username.trim().length < 0) {
-            alert("Username cannot be blank")
+            alert("Username cannot be blank");
         }
         else if (!newUser.password || newUser.password.trim().length < MIN_PASSWORD_CHARS) {
-            alert(`User ${newUser.username} not created\nPassword must be at least ${MIN_PASSWORD_CHARS} characters`)
+            alert(`User ${newUser.username} not created\nPassword must be at least ${MIN_PASSWORD_CHARS} characters`);
         }
         else {
             fetch(USER_ADMIN_PATH, makeRequestOptions("POST", newUser))

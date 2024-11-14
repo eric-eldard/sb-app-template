@@ -13,7 +13,7 @@ export namespace App {
     const POPSTATE_LISTENER = (e: PopStateEvent) => closePopup();
 
 
-    window.addEventListener("DOMContentLoaded", e => {
+    window.addEventListener("DOMContentLoaded", () => {
         browserDetect();
         bindPopupCloseToEsc();
     });

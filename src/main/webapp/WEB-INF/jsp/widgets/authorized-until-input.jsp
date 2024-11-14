@@ -7,8 +7,7 @@
     <div id="forever-auth-${user.id}" ${user.authorizedUntil == null ? "" : "style='display: none'"}>
         <i>forever</i>
         <a href="javascript: void(0)"
-           onclick="javascript:
-                    document.getElementById('forever-auth-${user.id}').style.display='none';
+           onclick="document.getElementById('forever-auth-${user.id}').style.display='none';
                     document.getElementById('exp-date-${user.id}').style.display='inline-block'"
            role="button"
            class="emoji-silhouette clock"
