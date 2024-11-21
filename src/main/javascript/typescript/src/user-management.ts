@@ -4,7 +4,7 @@
  * @author  Eric Eldard
  */
 
-import { User } from "./types/user";
+import type { User } from "user";
 
 export namespace UserManagement {
     const USER_ADMIN_PATH: string = "/your_app/users"; // TODO - set your app's root path
