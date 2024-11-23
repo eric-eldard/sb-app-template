@@ -326,7 +326,7 @@
                         <include>maintenance.html</include>
                         <include>scripts/deploy.sh</include>
                         <include>scripts/run.sh</include>
-                        <include>classes/application.properties</include>
+                        <include>classes/application.yml</include>
                     </includes>
                     <replacements>
                         <replacement>

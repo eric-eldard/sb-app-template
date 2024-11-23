@@ -29,23 +29,23 @@ public class YourApp
         ConfigurableApplicationContext context = SpringApplication.run(YourApp.class, args);
 
         // TODO - after renaming your packages, do a text search on "your_app." to discover all properties to rename
-        boolean createAdmin = Boolean.parseBoolean(context.getEnvironment().getProperty("your_app.create-admin"));
+        boolean createAdmin = Boolean.parseBoolean(context.getEnvironment().getProperty("your_app.admin.create"));
 
 
         if (createAdmin)
         {
-            String adminEmail = context.getEnvironment().getProperty("your_app.admin-username");
+            String adminEmail = context.getEnvironment().getProperty("your_app.admin.username");
             if (StringUtils.isBlank(adminEmail))
             {
                 throw new IllegalArgumentException(
-                    "Invalid value set for your_app.admin-email: [" + adminEmail + "]");
+                    "Invalid value set for your_app.admin.email: [" + adminEmail + "]");
             }
 
-            String adminPassword = context.getEnvironment().getProperty("your_app.admin-password");
+            String adminPassword = context.getEnvironment().getProperty("your_app.admin.password");
             if (!PasswordValidator.isValid(adminPassword))
             {
                 throw new IllegalArgumentException(
-                    "Invalid value set for your_app.admin-password: [" + adminPassword + "]");
+                    "Invalid value set for your_app.admin.password: [" + adminPassword + "]");
             }
 
             try

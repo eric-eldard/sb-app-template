@@ -14,7 +14,7 @@ import com.your_namespace.your_app.config.GlobalConfig;
 public class CookieServiceImpl implements CookieService
 {
     /**
-     * Defaults to {@code true} in application.properties; supports override for non-SSL test envs
+     * Defaults to {@code true} in application.yml; supports override for non-SSL test envs
      */
     @Value("${your_app.cookie.secure}")
     private final boolean secure;

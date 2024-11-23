@@ -1,0 +1,60 @@
+server:
+  error:
+    path: /error
+    whitelabel.enabled: false
+
+  servlet:
+    session:
+      timeout: -1  # Disable sessions
+      cookie:
+        http-only: true
+        secure:    ${COOKIE_SECURE:true}
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url:      ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+
+  jpa:
+    generate-ddl: false
+    show-sql:     ${SHOW_SQL:false}
+    properties:
+      hibernate.format_sql: true
+
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+  devtools:
+    restart.enabled: ${DEV_TOOLS_RESTART:false}
+
+
+management.endpoints:
+  jmx:
+    exposure:  # All actuator JMX endpoints unavailable by default; enable all by passing JMX_EXCLUDE=""
+      exclude: ${JMX_EXCLUDE:*}
+  web:
+    exposure:  # All actuator web endpoints are secured behind ROLE_ADMIN
+      include: beans,conditions,configprops,env,health,heapdump,info,loggers,mappings,metrics,threaddump
+
+
+your_app:
+  admin:      # Creates an initial user called "admin" (you must specify a password)
+    create:   ${CREATE_ADMIN:false}
+    username: ${ADMIN_USERNAME:admin}
+    password: ${ADMIN_PASSWORD}
+
+  app:
+    version:  ${ARTIFACT_VERSION}  # This can be provided as an env var or set by maven during a build (and so it can't have a default value)
+
+  cookie:
+    secure:   ${COOKIE_SECURE:true}
+
+  security:
+    jwt:
+      signing-key: ${JWT_SIGNING_KEY}
+      ttl-sec:     604800
