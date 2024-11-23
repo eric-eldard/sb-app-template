@@ -56,5 +56,5 @@ your_app:
 
   security:
     jwt:
-      signing-key: ${JWT_SIGNING_KEY}
+      signing-key: ${JWT_SIGNING_KEY}  # A value conforming to [openssl rand -hex 32]
       ttl-sec:     604800
