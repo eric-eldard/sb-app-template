@@ -4,7 +4,6 @@ import static org.springframework.security.web.header.writers.CrossOriginResourc
 
 import com.your_namespace.your_app.logging.filter.AddUserToMdcFilter;
 import com.your_namespace.your_app.security.csrf.CsrfTokenRepository;
-import com.your_namespace.your_app.security.filter.DisableSessionFilter;
 import com.your_namespace.your_app.security.filter.JwsFilter;
 import com.your_namespace.your_app.service.auth.AuthenticationService;
 import com.your_namespace.your_app.service.auth.SecurityContextService;
@@ -32,7 +31,6 @@ import org.springframework.security.web.authentication.LoginUrlAuthenticationEnt
 import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextHolderFilter;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter;
-import org.springframework.security.web.session.DisableEncodeUrlFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
@@ -120,9 +118,6 @@ public class GlobalConfig
             .headers(headers -> headers
                 .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
                 .crossOriginResourcePolicy(crossOrigin -> crossOrigin.policy(SAME_SITE))
-            )
-            .addFilterAfter(
-                new DisableSessionFilter(), DisableEncodeUrlFilter.class // makes DisableSessionFilter second in chain
             )
             .addFilterAfter(
                 new JwsFilter(authenticationService), SecurityContextHolderFilter.class
