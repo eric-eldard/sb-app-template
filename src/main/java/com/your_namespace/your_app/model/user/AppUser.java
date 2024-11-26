@@ -1,6 +1,7 @@
 package com.your_namespace.your_app.model.user;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import jakarta.persistence.CascadeType;
@@ -33,6 +34,7 @@ import com.your_namespace.your_app.model.user.enumeration.LoginOutcome;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor // for frameworks
 public class AppUser implements UserDetails
 {
     @Id
@@ -68,10 +70,6 @@ public class AppUser implements UserDetails
     @JoinTable(name = "app_authority", joinColumns = @JoinColumn(name = "user_id"))
     private Set<AppAuthority> appAuthorities;
 
-    public AppUser()
-    {
-        // framework ctor
-    }
 
     public AppUser(String username, String password, Date authorizedUntil, boolean enabled, boolean admin)
     {

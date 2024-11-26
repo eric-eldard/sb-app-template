@@ -122,7 +122,6 @@ public class GlobalConfig
                 .crossOriginResourcePolicy(crossOrigin -> crossOrigin.policy(SAME_SITE))
             )
             .addFilterAfter(
-                // TODO SOMETHING is still creating sessions (not Spring Boot, not Tomcat, not JSPs ...)
                 new DisableSessionFilter(), DisableEncodeUrlFilter.class // makes DisableSessionFilter second in chain
             )
             .addFilterAfter(

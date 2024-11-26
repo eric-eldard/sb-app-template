@@ -5,10 +5,11 @@ server:
 
   servlet:
     session:
-      timeout: -1  # Disable sessions
-      cookie:
+      persistent: false # no sessions; stateless auth
+      timeout: -1       # no sessions; stateless auth
+      cookie:           # user should never receive a session cookie, but these are secure fallbacks if they were to
         http-only: true
-        secure:    ${COOKIE_SECURE:true}
+        secure: ${COOKIE_SECURE:true}
 
 
 spring:
