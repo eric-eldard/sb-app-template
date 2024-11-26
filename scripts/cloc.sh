@@ -1,4 +1,4 @@
-# https://www.npmjs.com/package/cloc
+# https://www.npmjs.com/package/cloc / https://github.com/AlDanial/cloc
 
 BOLD_WHITE="\e[1;97m"
 RESET="\e[0m"
