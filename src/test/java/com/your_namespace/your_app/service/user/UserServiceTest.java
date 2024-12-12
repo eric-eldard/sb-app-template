@@ -19,10 +19,10 @@ import jakarta.transaction.Transactional;
 import java.util.Date;
 
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import com.your_namespace.your_app.YourApp;
 import com.your_namespace.your_app.model.user.AppUser;
@@ -43,13 +43,13 @@ import com.your_namespace.your_app.test.TestUtils;
 @ActiveProfiles("test")
 public class UserServiceTest
 {
-    @SpyBean
+    @MockitoSpyBean
     private AuthenticationService authenticationService;
 
-    @SpyBean
+    @MockitoSpyBean
     private CsrfTokenRepository csrfTokenRepo;
 
-    @SpyBean
+    @MockitoSpyBean
     private UserRepository userRepo;
 
     @Inject
