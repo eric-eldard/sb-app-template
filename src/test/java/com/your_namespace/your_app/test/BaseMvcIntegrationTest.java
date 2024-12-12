@@ -226,7 +226,7 @@ public class BaseMvcIntegrationTest
     protected UriComponentsBuilder makeBaseUri()
     {
         return UriComponentsBuilder
-            .fromHttpUrl(BASE_URL)
+            .fromUriString(BASE_URL)
             .port(port);
     }
 
