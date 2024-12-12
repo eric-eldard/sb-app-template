@@ -30,13 +30,13 @@ public final class ReflectionUtils
         field.set(obj, value);
     }
 
-    public static <A extends Annotation> A getAnnotationFromJoinPoint(JoinPoint joinPoint, Class<A> annotationType)
+    public static <A extends Annotation> A getAnnotation(JoinPoint joinPoint, Class<A> annotationType)
     {
         Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
         return AnnotationUtils.findAnnotation(method, annotationType);
     }
 
-    public static <T> T getArgValueFromJoinPoint(JoinPoint joinPoint, String argumentName, Class<T> argumentType)
+    public static <T> T getArgValue(JoinPoint joinPoint, String argumentName, Class<T> argumentType)
     {
         CodeSignature codeSignature = (CodeSignature) joinPoint.getSignature();
         int index = ArrayUtils.indexOf(codeSignature.getParameterNames(), argumentName);
