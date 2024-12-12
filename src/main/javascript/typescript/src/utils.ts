@@ -124,7 +124,7 @@ function setInnerHTML(elem: HTMLElement, html: string): void {
 
 /**
  * Remove all child nodes from the container element.
- * @param {Object} elem - the container to empty out
+ * @param {Object} container - the container to empty out
  */
 function clearChildren(container: HTMLElement): void {
     while (container.lastChild) {
