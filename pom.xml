@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.0</version>
+        <version>3.4.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -13,7 +13,7 @@
     <name>TODO</name>
     <groupId>TODO</groupId>
     <artifactId>sb-app-template</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <properties>
@@ -97,13 +97,14 @@
         <dependency>
             <groupId>jakarta.inject</groupId>
             <artifactId>jakarta.inject-api</artifactId>
-            <version>2.0.1</version>
+            <version>2.0.1.MR</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
-            <version>3.1.0</version> <!-- 3.2.0 not yet supported by Spring Boot -->
+            <version>3.1.0</version> <!-- 3.2.0 not yet supported by Spring Boot 3.4.1 -->
+            <!-- https://medium.com/@bayern01kahn/springboot-3-3-with-jakarta-persistence-api-3-2-issue-7fc4e33f5895 -->
         </dependency>
 
         <dependency>
@@ -133,13 +134,13 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>33.3.1-jre</version>
+            <version>33.4.0-jre</version>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.34</version>
+            <version>1.18.36</version>
         </dependency>
 
         <!-- Testing -->
@@ -195,7 +196,7 @@
             <plugin>
                 <groupId>org.eclipse.jetty.ee10</groupId>
                 <artifactId>jetty-ee10-jspc-maven-plugin</artifactId>
-                <version>12.0.15</version>
+                <version>12.0.16</version>
                 <executions>
                     <execution>
                         <id>jspc</id>
@@ -223,7 +224,7 @@
             <plugin>
                 <artifactId>exec-maven-plugin</artifactId>
                 <groupId>org.codehaus.mojo</groupId>
-                <version>3.4.1</version>
+                <version>3.5.0</version>
                 <executions>
                     <execution>
                         <id>TypeScript Compile and Browserify Bundle</id>
@@ -349,12 +350,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>3.5.2</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>3.5.2</version>
             </plugin>
 
         </plugins>
