@@ -264,6 +264,9 @@
                                         <include>utils.js</include>
                                     </includes>
                                 </resource>
+                                <resource>
+                                    <directory>${ts.basedir}/out/min</directory>
+                                </resource>
                             </resources>
                         </configuration>
                     </execution>

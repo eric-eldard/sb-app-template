@@ -17,5 +17,5 @@
 
         <link rel="stylesheet" type="text/css" href="/public/assets/style/app.css">
 
-        <script src="/public/assets/scripts/generated/app.bundle.js"></script>
-        <script src="/public/assets/scripts/generated/utils.js"></script>
+        <script src="/public/assets/scripts/generated/app.bundle.min.js"></script>
+        <script src="/public/assets/scripts/generated/utils.min.js"></script>
