@@ -1,5 +1,8 @@
 {
-  "dependencies": {
-
+  "devDependencies": {
+    "@types/bootstrap": "^5.2.10",
+    "browserify": "^17.0.1",
+    "cloc": "^2.2.0-cloc",
+    "typescript": "^5.7.2"
   }
 }
