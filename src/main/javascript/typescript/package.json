@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "browserify": "^17.0.1",
-    "cloc": "^2.2.0-cloc",
+    "cloc": "^2.11.0",
     "typescript": "^5.7.2",
     "uglify-js": "^3.19.3"
   }
