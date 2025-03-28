@@ -103,7 +103,7 @@
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
-            <version>3.1.0</version> <!-- 3.2.0 not yet supported by Spring Boot 3.4.1 -->
+            <version>3.2.0</version> <!-- 3.2.0 not yet supported by Spring Boot 3.4.1 -->
             <!-- https://medium.com/@bayern01kahn/springboot-3-3-with-jakarta-persistence-api-3-2-issue-7fc4e33f5895 -->
         </dependency>
 
