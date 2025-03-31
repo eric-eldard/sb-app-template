@@ -2,9 +2,8 @@ package com.your_namespace.your_app.test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.function.Executable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -14,14 +13,13 @@ import java.util.Date;
 import com.your_namespace.your_app.model.user.AppUserDto;
 import com.your_namespace.your_app.util.Constants;
 
+@Slf4j
 public class TestUtils
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(TestUtils.class);
-
     public static <T extends Throwable> T assertThrowsAndPrintMessage(Class<T> expectedType, Executable executable)
     {
         T throwable = assertThrows(expectedType, executable);
-        LOGGER.error("{} thrown with message: {}", expectedType.getSimpleName(), throwable.getMessage());
+        log.error("{} thrown with message: {}", expectedType.getSimpleName(), throwable.getMessage());
         return throwable;
     }
 

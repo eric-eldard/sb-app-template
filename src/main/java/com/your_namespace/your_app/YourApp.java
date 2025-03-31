@@ -1,8 +1,7 @@
 package com.your_namespace.your_app;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,10 +19,9 @@ import com.your_namespace.your_app.validation.validator.PasswordValidator;
     scanBasePackages = "com.your_namespace.your_app", // TODO - set your app's package
     exclude = SecurityAutoConfiguration.class
 )
+@Slf4j
 public class YourApp
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(YourApp.class);
-
     public static void main(String[] args)
     {
         ConfigurableApplicationContext context = SpringApplication.run(YourApp.class, args);
@@ -61,7 +59,7 @@ public class YourApp
             }
             catch (Exception ex)
             {
-                LOGGER.error("Unable to create admin for reason: {}", ex.getMessage(), ex);
+                log.error("Unable to create admin for reason: {}", ex.getMessage(), ex);
             }
         }
     }

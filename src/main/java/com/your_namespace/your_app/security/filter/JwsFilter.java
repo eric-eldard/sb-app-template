@@ -1,8 +1,8 @@
 package com.your_namespace.your_app.security.filter;
 
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -24,18 +24,11 @@ import com.your_namespace.your_app.util.Constants;
  * those for public assets. Requests without a JWT are allowed to continue (supporting unauthenticated endpoints); such
  * requests will fail if they reach authorization.
  */
+@Slf4j
+@AllArgsConstructor
 public class JwsFilter extends OncePerRequestFilter
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JwsFilter.class);
-
     private final AuthenticationService authenticationService;
-
-
-    public JwsFilter(AuthenticationService authenticationService)
-    {
-        this.authenticationService = authenticationService;
-    }
-
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
@@ -57,7 +50,7 @@ public class JwsFilter extends OncePerRequestFilter
         }
         catch (Exception ex)
         {
-            LOGGER.info("Re-authentication failed for reason: {}", ex.getMessage());
+            log.info("Re-authentication failed for reason: {}", ex.getMessage());
             authenticationService.logUserOut(response, null);
             response.setStatus(ex instanceof AccountStatusException ?
                 HttpServletResponse.SC_FORBIDDEN :

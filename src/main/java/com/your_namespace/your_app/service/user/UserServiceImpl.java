@@ -1,9 +1,8 @@
 package com.your_namespace.your_app.service.user;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import jakarta.annotation.Nonnull;
 import java.util.Date;
@@ -27,12 +26,11 @@ import com.your_namespace.your_app.service.auth.SecurityContextService;
 import com.your_namespace.your_app.util.Constants;
 import com.your_namespace.your_app.validation.validator.PasswordValidator;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
-
     private final PasswordEncoder passwordEncoder;
 
     private final UserRepository userRepo;
@@ -95,7 +93,7 @@ public class UserServiceImpl implements UserService
         );
 
         user = userRepo.save(user);
-        LOGGER.info("User [{}] created by [{}]", user.getUsername(), getRequesterUsername());
+        log.info("User [{}] created by [{}]", user.getUsername(), getRequesterUsername());
 
         return user;
     }
@@ -110,7 +108,7 @@ public class UserServiceImpl implements UserService
                 new IllegalArgumentException("Cannot delete user with id [" + id + "]; user not found"));
 
         userRepo.delete(user);
-        LOGGER.info("User [{}] deleted by [{}]", user.getUsername(), getRequesterUsername());
+        log.info("User [{}] deleted by [{}]", user.getUsername(), getRequesterUsername());
     }
 
     @Override
@@ -125,7 +123,7 @@ public class UserServiceImpl implements UserService
         user.setFailedPasswordAttempts(0);
         user = userRepo.save(user);
 
-        LOGGER.info("User [{}] unlocked by [{}]", user.getUsername(), getRequesterUsername());
+        log.info("User [{}] unlocked by [{}]", user.getUsername(), getRequesterUsername());
     }
 
     @Override
@@ -146,7 +144,7 @@ public class UserServiceImpl implements UserService
         user.setFailedPasswordAttempts(0);
         user = userRepo.save(user);
 
-        LOGGER.info("[{}] changed password for user [{}]",
+        log.info("[{}] changed password for user [{}]",
             getRequesterUsername(),
             user.getUsername()
         );
@@ -163,7 +161,7 @@ public class UserServiceImpl implements UserService
         user.setAuthorizedUntil(date);
         user = userRepo.save(user);
 
-        LOGGER.info("User [{}] is authorized until {}; set by [{}]",
+        log.info("User [{}] is authorized until {}; set by [{}]",
             user.getUsername(),
             user.getAuthorizedUntil(),
             getRequesterUsername()
@@ -181,7 +179,7 @@ public class UserServiceImpl implements UserService
         user.setAuthorizedUntil(null);
         user = userRepo.save(user);
 
-        LOGGER.info("User [{}] is authorized forever; set by [{}]",
+        log.info("User [{}] is authorized forever; set by [{}]",
             user.getUsername(),
             getRequesterUsername()
         );
@@ -198,7 +196,7 @@ public class UserServiceImpl implements UserService
         user.setEnabled(enabled);
         user = userRepo.save(user);
 
-        LOGGER.info("User [{}] {} by [{}]",
+        log.info("User [{}] {} by [{}]",
             user.getUsername(),
             user.isEnabled() ? "enabled" : "disabled",
             getRequesterUsername()
@@ -217,7 +215,7 @@ public class UserServiceImpl implements UserService
         user.setAdmin(isAdmin);
         user = userRepo.save(user);
 
-        LOGGER.info("User [{}] {} by [{}]",
+        log.info("User [{}] {} by [{}]",
             user.getUsername(),
             user.isAdmin() ? "promoted to admin" : "demoted to standard user",
             getRequesterUsername()
@@ -244,7 +242,7 @@ public class UserServiceImpl implements UserService
         user = userRepo.save(user);
         boolean granted = user.hasAuthority(authority);
 
-        LOGGER.info("[{}] {} authority [{}] {} user [{}]",
+        log.info("[{}] {} authority [{}] {} user [{}]",
             getRequesterUsername(),
             granted ? "granted" : "removed",
             authority,
@@ -280,7 +278,7 @@ public class UserServiceImpl implements UserService
         Optional<AppUser> optUser = userRepo.findFullyHydratedByUsername(username);
         if (optUser.isEmpty())
         {
-            LOGGER.info("Failed login for non-existent user [{}]", username);
+            log.info("Failed login for non-existent user [{}]", username);
             return;
         }
 
@@ -294,17 +292,17 @@ public class UserServiceImpl implements UserService
             {
                 if (user.isAccountLocked())
                 {
-                    LOGGER.debug("Recording failed login attempt for [{}]; this account is already locked", username);
+                    log.debug("Recording failed login attempt for [{}]; this account is already locked", username);
                 }
                 else
                 {
                     user.setLockedOn(new Date());
-                    LOGGER.info("Recording failed login attempt for [{}]; this account is now locked", username);
+                    log.info("Recording failed login attempt for [{}]; this account is now locked", username);
                 }
             }
             else
             {
-                LOGGER.info("Recording failed login attempt for [{}]; user has {} tries remaining before their " +
+                log.info("Recording failed login attempt for [{}]; user has {} tries remaining before their " +
                     "account is locked", username, remainingAttempts);
             }
         }

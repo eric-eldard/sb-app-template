@@ -1,22 +1,20 @@
 package com.your_namespace.your_app.controller.advice;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import org.springframework.stereotype.Component;
 
 import com.your_namespace.your_app.service.auth.SecurityContextService;
 
+@Slf4j
 @Aspect
 @Component
 @AllArgsConstructor
 public class PageViewAspect
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PageViewAspect.class);
-
     private final SecurityContextService securityContextService;
 
     /**
@@ -27,6 +25,6 @@ public class PageViewAspect
         "@annotation(org.springframework.web.bind.annotation.GetMapping)", returning = "page")
     public void logPageView(Object page)
     {
-        LOGGER.debug("[{}] viewed page [{}]", securityContextService.getCurrentUsersNameNonNull(), page);
+        log.debug("[{}] viewed page [{}]", securityContextService.getCurrentUsersNameNonNull(), page);
     }
 }

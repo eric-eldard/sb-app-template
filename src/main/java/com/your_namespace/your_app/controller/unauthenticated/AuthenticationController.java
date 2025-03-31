@@ -1,8 +1,7 @@
 package com.your_namespace.your_app.controller.unauthenticated;
 
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,12 +17,11 @@ import com.your_namespace.your_app.model.auth.Credentials;
 import com.your_namespace.your_app.model.user.AppUser;
 import com.your_namespace.your_app.service.auth.AuthenticationService;
 
+@Slf4j
 @RestController
 @AllArgsConstructor
 public class AuthenticationController
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationController.class);
-
     private final AuthenticationService authenticationService;
 
     @PostMapping("/login")
@@ -39,7 +37,7 @@ public class AuthenticationController
                 credentials.getPassword()
             );
 
-            LOGGER.info("[{}] successfully logged in.", authentication.getName());
+            log.info("[{}] successfully logged in.", authentication.getName());
 
             AppUser user = (AppUser) authentication.getPrincipal();
             String token = authenticationService.issueToken(user);
@@ -50,7 +48,7 @@ public class AuthenticationController
         }
         catch (Exception ex)
         {
-            LOGGER.info("Authentication failed for reason: {}", ex.getMessage());
+            log.info("Authentication failed for reason: {}", ex.getMessage());
             response.setStatus(ex instanceof AccountStatusException ?
                 HttpServletResponse.SC_FORBIDDEN :
                 HttpServletResponse.SC_UNAUTHORIZED

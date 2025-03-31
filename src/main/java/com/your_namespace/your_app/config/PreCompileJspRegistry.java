@@ -1,10 +1,9 @@
 package com.your_namespace.your_app.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.descriptor.web.ServletDef;
 import org.apache.tomcat.util.descriptor.web.WebXml;
 import org.apache.tomcat.util.descriptor.web.WebXmlParser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
 
 import jakarta.servlet.ServletRegistration;
@@ -19,11 +18,10 @@ import org.springframework.context.annotation.Configuration;
  * Reads pre-compiled JSPs locations out of the web.xml and provides their paths to the servlet.
  * Adapted from <a href="https://stackoverflow.com/a/55231198/1908807">https://stackoverflow.com/a/55231198/1908807</a>
  */
+@Slf4j
 @Configuration
 public class PreCompileJspRegistry
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PreCompileJspRegistry.class);
-
     @Bean
     public ServletContextInitializer registerPreCompiledJsps()
     {
@@ -32,7 +30,7 @@ public class PreCompileJspRegistry
             InputStream inputStream = servletContext.getResourceAsStream("/WEB-INF/web.xml");
             if (inputStream == null)
             {
-                LOGGER.info("Could not read web.xml");
+                log.info("Could not read web.xml");
                 return;
             }
             try
@@ -43,13 +41,13 @@ public class PreCompileJspRegistry
 
                 if (!success)
                 {
-                    LOGGER.error("Error registering precompiled JSPs");
+                    log.error("Error registering precompiled JSPs");
                     return;
                 }
 
                 for (ServletDef def : webXml.getServlets().values())
                 {
-                    LOGGER.info("Registering precompiled JSP: {} -> {}", def.getServletName(), def.getServletClass());
+                    log.info("Registering precompiled JSP: {} -> {}", def.getServletName(), def.getServletClass());
                     ServletRegistration.Dynamic reg =
                         servletContext.addServlet(def.getServletName(), def.getServletClass());
                     reg.setInitParameter("development", "false");
@@ -58,13 +56,13 @@ public class PreCompileJspRegistry
 
                 for (Map.Entry<String, String> mapping : webXml.getServletMappings().entrySet())
                 {
-                    LOGGER.info("Mapping servlet: {} -> {}", mapping.getValue(), mapping.getKey());
+                    log.info("Mapping servlet: {} -> {}", mapping.getValue(), mapping.getKey());
                     servletContext.getServletRegistration(mapping.getValue()).addMapping(mapping.getKey());
                 }
             }
             catch (Exception ex)
             {
-                LOGGER.error("Error registering precompiled JSPs", ex);
+                log.error("Error registering precompiled JSPs", ex);
             }
         };
     }
