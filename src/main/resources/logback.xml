@@ -19,4 +19,20 @@
     <root level="INFO">
         <appender-ref ref="FILE"/>
     </root>
+
+    <springProfile name="dev,test">
+        <conversionRule conversionWord="hlCls" class="com.your_namespace.your_app.util.logging.YourClassForegroundConverter"/>
+        <conversionRule conversionWord="hlMsg" class="com.your_namespace.your_app.util.logging.YourMessageForegroundConverter"/>
+
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%white(%d{HH:mm:ss.SSS}) %boldWhite([%thread]) %replace(%boldCyan([user:%mdc{username}] )){'\[user:\] ', ''}%highlight(%-5level) %hlCls(%logger{35}) - %hlMsg(%msg%n)</pattern>
+            </encoder>
+        </appender>
+
+        <!-- TODO - set your app's root package -->
+        <logger name="com.your_namespace" level="INFO" additivity="false">
+            <appender-ref ref="CONSOLE"/>
+        </logger>
+    </springProfile>
 </configuration>

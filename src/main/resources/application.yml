@@ -34,6 +34,10 @@ spring:
     restart.enabled: ${DEV_TOOLS_RESTART:false}
 
 
+logging.level:
+  com.your_namespace: ${LOG_LEVEL_APP:INFO}
+
+
 management.endpoints:
   jmx:
     exposure:  # All actuator JMX endpoints unavailable by default; enable all by passing JMX_EXCLUDE=""
