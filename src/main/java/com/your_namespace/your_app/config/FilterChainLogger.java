@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.web.FilterChainProxy;
 
 /**
- * Logs the Spring security filter chain to debug on startup. Very helpful for Spring Security debugging.
+ * Logs the Spring Security filter chain to debug on startup. Very helpful for Spring Security debugging.
  */
 @Slf4j
 @Configuration
@@ -27,9 +27,14 @@ public class FilterChainLogger
                 filterChainProxy.getFilters("/**").stream()
                     .map(Filter::getClass)
                     .map(Class::getSimpleName)
-                    .map(name -> (index.get() < 10 ? " " : "") + index.getAndIncrement() + ". " + name)
+                    .map(name -> nextNumber(index) + name)
                     .collect(Collectors.joining("\n", "\n", "\n"))
             );
         }
+    }
+
+    private String nextNumber(AtomicInteger index)
+    {
+        return (index.get() < 10 ? " " : "") + index.getAndIncrement() + ". ";
     }
 }
