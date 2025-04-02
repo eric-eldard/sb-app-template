@@ -152,8 +152,8 @@ public class AuthenticationServiceImpl implements AuthenticationService
         securityContextService.setAuthentication(tokenToPresent);
     }
 
-    /// Refresh required
-    /// - for any token issued prior to {@link #SERVER_START}
+    /// Refresh required:
+    /// - for any token issued by a server started prior to {@link #SERVER_START} (ensures token is latest code version)
     /// - if presented token was issued prior user's addition to {@link #usersRequiringFreshClaims}
     private boolean refreshRequired(JwsAuthToken incomingToken)
     {
