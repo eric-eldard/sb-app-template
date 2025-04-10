@@ -12,10 +12,12 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.your_namespace.your_app.persistence._PersistencePackage;
+
 @Configuration
 @ActiveProfiles("test")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.your_namespace.your_app.persistence")
+@EnableJpaRepositories(basePackageClasses = _PersistencePackage.class)
 public class TestConfig
 {
     @Inject

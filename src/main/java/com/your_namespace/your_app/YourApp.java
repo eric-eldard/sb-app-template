@@ -16,7 +16,7 @@ import com.your_namespace.your_app.validation.validator.PasswordValidator;
  * Application entry point
  */
 @SpringBootApplication(
-    scanBasePackages = "com.your_namespace.your_app", // TODO - set your app's package
+    scanBasePackageClasses = YourApp.class,
     exclude = SecurityAutoConfiguration.class
 )
 @Slf4j
