@@ -227,7 +227,7 @@
                 <executions>
                     <execution>
                         <id>TypeScript Compile and Browserify Bundle</id>
-                        <phase>generate-sources</phase>
+                        <phase>generate-resources</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
