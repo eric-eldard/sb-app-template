@@ -1,4 +1,14 @@
+# Run `mvn generate-resources` from project root to execute this script. It will:
+# 1. download all TypeScript dependencies
+# 2. compile all TypeScript to JavaScript
+# 3. minify JavaScript & generate source maps
+# 4. copy output to webapp/public/assets/scripts/generated
+
+rm -rf out
+
 mkdir -p out/min
+
+npm install
 
 # https://www.npmjs.com/package/typescript
 # https://www.npmjs.com/package/browserify
