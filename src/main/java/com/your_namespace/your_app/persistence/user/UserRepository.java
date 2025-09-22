@@ -19,6 +19,8 @@ public interface UserRepository extends JpaRepository<AppUser, Long>
 
     boolean existsByUsername(String username);
 
+    boolean existsByAdminTrue();
+
     @EntityGraph(attributePaths = {"loginAttempts", "appAuthorities"})
     Optional<AppUser> findFullyHydratedById(long id);
 

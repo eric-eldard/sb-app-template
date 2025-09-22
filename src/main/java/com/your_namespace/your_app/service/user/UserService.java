@@ -22,6 +22,8 @@ public interface UserService extends UserDetailsService
 
     Optional<AppUser> findFullyHydratedById(long id);
 
+    boolean hasAdmin();
+
     AppUser create(@Nonnull AppUserDto dto);
 
     void delete(long id);

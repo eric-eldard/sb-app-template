@@ -62,6 +62,12 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
+    public boolean hasAdmin()
+    {
+        return userRepo.existsByAdminTrue();
+    }
+
+    @Override
     public AppUser create(@Nonnull AppUserDto dto)
     {
         String username = dto.getUsername().trim();
