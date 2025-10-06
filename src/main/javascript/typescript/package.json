@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "browserify": "^17.0.1",
-    "typescript": "^5.9.2",
+    "typescript": "^5.9.3",
     "uglify-js": "^3.19.3"
   }
 }
