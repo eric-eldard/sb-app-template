@@ -1,8 +1,4 @@
 server:
-  error:
-    path: /error
-    whitelabel.enabled: false
-
   servlet:
     session:
       persistent: false # no sessions; stateless auth
@@ -19,6 +15,10 @@ spring:
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
 
+  jackson:
+    deserialization:
+      FAIL_ON_NULL_FOR_PRIMITIVES: false
+
   jpa:
     generate-ddl: false
     show-sql:     ${SHOW_SQL:false}
@@ -29,6 +29,11 @@ spring:
     view:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
+
+  web:
+    error:
+      path: /error
+      whitelabel.enabled: false
 
   devtools:
     restart.enabled: ${DEV_TOOLS_RESTART:false}

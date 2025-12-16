@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PublicController
 {
-    @GetMapping("/")
+    @GetMapping
     public String home()
     {
         return "splash";

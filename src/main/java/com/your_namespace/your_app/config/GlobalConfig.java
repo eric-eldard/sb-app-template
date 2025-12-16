@@ -2,19 +2,14 @@ package com.your_namespace.your_app.config;
 
 import static org.springframework.security.web.header.writers.CrossOriginResourcePolicyHeaderWriter.CrossOriginResourcePolicy.SAME_SITE;
 
-import com.your_namespace.your_app.logging.filter.AddUserToMdcFilter;
-import com.your_namespace.your_app.security.csrf.CsrfTokenRepository;
-import com.your_namespace.your_app.security.filter.JwsFilter;
-import com.your_namespace.your_app.service.auth.AuthenticationService;
-import com.your_namespace.your_app.service.auth.SecurityContextService;
-import com.your_namespace.your_app.service.user.UserService;
 import lombok.AllArgsConstructor;
 
 import jakarta.servlet.DispatcherType;
 
-import org.springframework.boot.web.servlet.server.CookieSameSiteSupplier;
+import org.springframework.boot.web.server.servlet.CookieSameSiteSupplier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -30,8 +25,15 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextHolderFilter;
+import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import com.your_namespace.your_app.logging.filter.AddUserToMdcFilter;
+import com.your_namespace.your_app.security.csrf.CsrfTokenRepository;
+import com.your_namespace.your_app.security.filter.JwsFilter;
+import com.your_namespace.your_app.service.auth.AuthenticationService;
+import com.your_namespace.your_app.service.auth.SecurityContextService;
+import com.your_namespace.your_app.service.user.UserService;
 
 /**
  * Master config for security, logging, and beans for which creation order prevents a circular dependency.
@@ -107,7 +109,7 @@ public class GlobalConfig
             .logout(logout ->
                 logout
                     .permitAll()
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) // reinstate GET /logout (removed by CSRF config)
+                    .logoutRequestMatcher(PathPatternRequestMatcher.withDefaults().matcher(HttpMethod.GET, "/logout")) // reinstate GET /logout (removed by CSRF config)
                     .logoutSuccessUrl("/")
                     .addLogoutHandler((request, response, authentication) ->
                         authenticationService.logUserOut(response, authentication))
@@ -131,8 +133,8 @@ public class GlobalConfig
 
     private AuthenticationProvider makeAuthenticationProvider()
     {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(passwordEncoder);
-        provider.setUserDetailsService(userService);
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userService);
+        provider.setPasswordEncoder(passwordEncoder);
         return provider;
     }
 }

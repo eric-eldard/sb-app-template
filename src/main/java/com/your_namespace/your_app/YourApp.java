@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.security.autoconfigure.SecurityAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.your_namespace.your_app.model.user.AppUserDto;
