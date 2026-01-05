@@ -28,7 +28,7 @@
         <dependency>
             <groupId>com.cosium.spring.data</groupId>
             <artifactId>spring-data-jpa-entity-graph</artifactId>
-            <version>3.5.0</version>
+            <version>4.0.2</version>
         </dependency>
 
         <dependency>
